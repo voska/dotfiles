@@ -71,6 +71,7 @@ brew cask install iconping
 brew cask install slack
 brew cask install iterm2
 brew cask install 1password
+brew cask install freeze
 brew cask install disk-inventory-x
 brew cask install imageoptim
 brew cask install limechat
