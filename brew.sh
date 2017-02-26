@@ -42,7 +42,7 @@ brew install nmap
 brew install sqlmap
 
 # Install clis for hosting
-brew install heroku-toolbelt
+brew install heroku
 brew install awscli
 
 # Install databases
@@ -53,6 +53,7 @@ brew install postgresql
 # Install other useful binaries.
 brew install dark-mode
 brew install git
+brew install tig
 brew install git-lfs
 brew install imagemagick
 brew install p7zip
@@ -60,13 +61,12 @@ brew install speedtest_cli
 brew install tree
 brew install webkit2png
 brew install ffmpeg
-brew install keybase
 
 # Install cask and apps.
 brew install cask
 brew cask install dropbox
 brew cask install google-chrome
-brew cask install sublime-text3
+brew cask install sublime-text
 brew cask install iconping
 brew cask install slack
 brew cask install iterm2
@@ -74,6 +74,8 @@ brew cask install 1password
 brew cask install disk-inventory-x
 brew cask install imageoptim
 brew cask install postgres
+brew cask install keybase
+brew cask install postico
 
 # Remove outdated versions from the cellar.
 brew cleanup
