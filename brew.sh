@@ -42,40 +42,61 @@ brew install nmap
 brew install sqlmap
 
 # Install clis for hosting
-brew install heroku
 brew install awscli
+brew install heroku
 
 # Install databases
 brew install mysql
-brew install sqlite
 brew install postgresql
+brew install sqlite
 
 # Install other useful binaries.
 brew install dark-mode
+brew install ffmpeg
 brew install git
-brew install tig
 brew install git-lfs
 brew install imagemagick
 brew install p7zip
 brew install speedtest_cli
+brew install tig
 brew install tree
 brew install webkit2png
-brew install ffmpeg
+brew install cheat
+brew install tldr
+brew install prettyping
+brew install bat
 
 # Install cask and apps.
 brew install cask
-brew cask install dropbox
-brew cask install google-chrome
-brew cask install sublime-text
-brew cask install iconping
-brew cask install slack
-brew cask install iterm2
 brew cask install 1password
-brew cask install disk-inventory-x
+brew cask install arq
+brew cask install dropbox
+brew cask install firefox
+brew cask install github
+brew cask install gnucash
+brew cask install google-adwords-editor
+brew cask install google-chrome
+brew cask install gpgtools
 brew cask install imageoptim
+brew cask install iterm2
+brew cask install mactex
+brew cask install mullvad
+brew cask install mysqlworkbench
+brew cask install omnidisksweeper
+brew cask install plex-media-player
+brew cask install popsql
 brew cask install postgres
-brew cask install keybase
 brew cask install postico
+brew cask install shiftit
+brew cask install skype
+brew cask install slack
+brew cask install sublime-text
+brew cask install teamviewer
+brew cask install texstudio
+brew cask install torbrowser
+brew cask install universal-media-server
+brew cask install vlc
+brew cask install whatsapp
 
 # Remove outdated versions from the cellar.
 brew cleanup
