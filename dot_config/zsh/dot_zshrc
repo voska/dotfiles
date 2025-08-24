@@ -13,3 +13,6 @@ fi
 
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
+source ${ZDOTDIR}/aliases.zsh
+source ${ZDOTDIR}/exports.zsh
+eval "$(mise activate zsh)"
