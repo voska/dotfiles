@@ -1,0 +1,65 @@
+[user]
+	email = matt@voska.org
+	name = Matt Voska
+	signingkey = ~/.ssh/id_ed25519.pub
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+[color]
+  ui = true
+[alias]
+  b = branch
+  co = checkout
+  s = status
+  st = stash
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+	gpgsign = true
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[help]
+	autocorrect = prompt
+[commit]
+	verbose = true
+	gpgsign = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /usr/bin/ssh-keygen
+	allowedSignersFile = ~/.ssh/allowed_signers
