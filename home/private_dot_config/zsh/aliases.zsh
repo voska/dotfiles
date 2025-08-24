@@ -11,6 +11,11 @@ alias brewski='brew update && brew upgrade && brew cleanup -s && brew doctor; br
 
 # git aliases
 alias tigs="tig status"
+alias g="git"
+alias gco="git checkout"
+alias gb="git branch"
+alias pull="git pull"
+alias gcl="git clone"
 
 # Miscellaneous aliases
 alias cat="bat"

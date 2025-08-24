@@ -1,0 +1,38 @@
+# .chezmoiignore.tmpl - Controls which files chezmoi manages
+
+# Documentation and repo files (always ignore in home)
+README.md
+.editorconfig
+
+# macOS system file
+.DS_Store
+
+# Platform-specific scripts
+{{ if ne .chezmoi.os "darwin" -}}
+.chezmoiscripts/darwin/**
+{{ end -}}
+{{ if ne .chezmoi.os "linux" -}}
+.chezmoiscripts/linux/**
+{{ end -}}
+{{ if ne .chezmoi.os "windows" -}}
+.chezmoiscripts/windows/**
+{{ end -}}
+
+# Development tools - only manage on dev machines
+{{ if not .dev -}}
+.config/git/**
+.config/tig/**
+{{ end -}}
+
+# Personal/sensitive files - only on personal machines
+{{ if not .personal -}}
+.ssh/**
+.gnupg/**
+{{ end -}}
+
+# Cache and runtime directories
+.cache/**
+.bundle/**
+.cocoapods/**
+.cups/**
+.docker/**

@@ -1,18 +1,23 @@
 [user]
-	email = matt@voska.org
-	name = Matt Voska
+	name = {{ .user.name }}
+	email = voska@users.noreply.github.com
 	signingkey = ~/.ssh/id_ed25519.pub
 [push]
 	default = simple
 	autoSetupRemote = true
 	followTags = true
 [color]
-  ui = true
+  	ui = true
 [alias]
-  b = branch
-  co = checkout
-  s = status
-  st = stash
+	a = add
+	c = commit
+	cm = commit -m
+	ca = commit -a
+	b = branch
+	co = checkout
+	s = status
+	st = stash
+	unstage = reset HEAD --
 [filter "media"]
 	clean = git media clean %f
 	smudge = git media smudge %f
@@ -57,7 +62,6 @@
 	autoSquash = true
 	autoStash = true
 	updateRefs = true
-
 [gpg]
 	format = ssh
 [gpg "ssh"]
