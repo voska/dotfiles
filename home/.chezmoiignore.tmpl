@@ -18,11 +18,6 @@ README.md
 .chezmoiscripts/windows/**
 {{ end -}}
 
-# Development tools - only manage on dev machines
-{{ if not .dev -}}
-.config/git/**
-.config/tig/**
-{{ end -}}
 
 # Personal/sensitive files - only on personal machines
 {{ if not .personal -}}

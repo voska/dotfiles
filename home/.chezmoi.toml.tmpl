@@ -1,16 +1,7 @@
-encryption = "age"
-[age]
-    identity = "$HOME/.config/age/key.txt"
-    symmetric = true
-
 {{/* boolean feature flags */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets from 1Password */}}
-{{- $work := false -}}{{/* true if this machine is for work */}}
-{{- $dev := false -}}{{/* true if this machine needs development tools */}}
-{{- $media := false -}}{{/* true if this machine needs media tools (ffmpeg, etc) */}}
-{{- $chassisType := "desktop" -}}{{/* desktop, laptop, or server */}}
 {{- "" -}}
 
 {{/* Create OS identifier for easier conditionals */}}
@@ -23,7 +14,6 @@ encryption = "age"
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
 {{-   $ephemeral = true -}}
 {{-   $headless = true -}}
-{{-   $chassisType = "server" -}}
 {{- end -}}
 
 {{/* work around unreliable hostname on darwin */}}
@@ -38,60 +28,35 @@ encryption = "age"
 {{/* detect machine type based on hostname or prompt */}}
 {{- if not $ephemeral -}}
 {{-   if eq .chezmoi.os "darwin" -}}
-{{-     if contains "mini" (lower $hostname) -}}
+{{-     if contains "dg" (lower $hostname) -}}
 {{-       $headless = true -}}
 {{-       $personal = true -}}
-{{-       $dev = false -}}
-{{-       $media = true -}}
-{{-       $chassisType = "server" -}}
-{{-     else if contains "studio" (lower $hostname) -}}
+{{-     else if contains "nightwatch" (lower $hostname) -}}
 {{-       $personal = true -}}
-{{-       $dev = true -}}
-{{-       $media = true -}}
-{{-       $chassisType = "desktop" -}}
 {{-     else -}}
 {{-       $personal = true -}}
-{{-       $dev = true -}}
-{{-       $chassisType = "laptop" -}}
 {{-     end -}}
 {{-   else if eq .chezmoi.os "linux" -}}
 {{-     $headless = true -}}
-{{-     $chassisType = "server" -}}
 {{-     if stdinIsATTY -}}
 {{-       $personal = promptBoolOnce . "personal" "Personal machine (install personal secrets)" -}}
-{{-       $work = promptBoolOnce . "work" "Work machine" -}}
-{{-       $dev = promptBoolOnce . "dev" "Install development tools" -}}
 {{-     end -}}
 {{-   end -}}
 {{- end -}}
 
-{{/* set email based on personal/work */}}
-{{- $email := "" -}}
-{{- if $personal -}}
-{{-   $email = promptStringOnce . "email" "Personal email" -}}
-{{- else if $work -}}
-{{-   $email = promptStringOnce . "email" "Work email" -}}
-{{- else -}}
-{{-   $email = promptStringOnce . "email" "Email address" -}}
-{{- end -}}
-
-{{- $name := promptStringOnce . "name" "Full name" -}}
+encryption = "age"
+[age]
+    identity = "$HOME/.config/age/key.txt"
+    symmetric = true
 
 [data]
-    email = {{ $email | quote }}
-    name = {{ $name | quote }}
     hostname = {{ $hostname | quote }}
     ephemeral = {{ $ephemeral }}
     headless = {{ $headless }}
     personal = {{ $personal }}
-    work = {{ $work }}
-    dev = {{ $dev }}
-    media = {{ $media }}
-    chassisType = {{ $chassisType | quote }}
     osid = {{ $osid | quote }}
 
-{{- if .personal }}
+{{- if $personal }}
 [onepassword]
     prompt = true
 {{- end }}
-    
