@@ -25,6 +25,7 @@ defaults write com.apple.dock mru-spaces -bool false
 defaults write com.apple.dock orientation -string left
 defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock showLaunchpadGestureEnabled -bool false
+defaults write com.apple.dock tilesize -int 36
 
 defaults write com.apple.finder FXPreferredViewStyle -string Nlsv
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
