@@ -15,4 +15,7 @@ fi
 source ${ZIM_HOME}/init.zsh
 source ${ZDOTDIR}/aliases.zsh
 source ${ZDOTDIR}/exports.zsh
+
+{{ if not .headless -}}
 eval "$(mise activate zsh)"
+{{ end -}}
