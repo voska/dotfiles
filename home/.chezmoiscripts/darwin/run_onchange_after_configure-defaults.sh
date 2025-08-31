@@ -43,8 +43,15 @@ defaults write com.apple.ActivityMonitor IconType -int 6
 
 defaults write com.apple.Terminal SecureKeyboardEntry -bool true
 
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 6
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 12
+
 defaults write com.googlecode.iterm2 QuitWhenAllWindowsClosed -bool true
 defaults write com.googlecode.iterm2 SUAutomaticallyUpdate -bool true
 defaults write com.googlecode.iterm2 SUEnableAutomaticChecks -bool true
 defaults write com.googlecode.iterm2 NeverBlockSystemShutdown -bool true
 defaults write com.googlecode.iterm2 FocusFollowsMouse -bool true
+
+defaults write com.knollsoft.Rectangle launchOnLogin -bool true
+defaults write com.knollsoft.Rectangle hideMenubarIcon -bool true
+defaults write com.knollsoft.Rectangle SUEnableAutomaticChecks -bool true
