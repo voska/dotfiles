@@ -32,6 +32,7 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
 defaults write com.apple.finder FXRemoveOldTrashItems -bool true
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+defaults write com.apple.finder NewWindowTarget -string PfHm
 
 defaults write com.apple.menuextra.clock DateFormat -string "\"EEE d MMM HH:mm:ss\""
 
