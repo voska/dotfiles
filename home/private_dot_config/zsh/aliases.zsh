@@ -8,10 +8,16 @@ alias lal='ls -al'
 
 # brew aliases
 alias brewski='brew update && brew upgrade && brew cleanup -s && brew doctor; brew missing'
+alias bs='brew search'
+alias bic='brew install --cask'
+alias bi='brew install'
+alias bci='brew info --cask'
+alias bfi='brew info'
 
 # git aliases
 alias tigs="tig status"
 alias g="git"
+alias gp="git push"
 alias gco="git checkout"
 alias gb="git branch"
 alias pull="git pull"
