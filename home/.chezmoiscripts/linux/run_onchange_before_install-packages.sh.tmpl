@@ -20,4 +20,12 @@ set -eufo pipefail
 {{ $sudo }}apt-get update
 {{ $sudo }}apt-get install -y {{ $packages | join " " }}
 
+# Install chezmoi if not already installed
+if ! command -v chezmoi &> /dev/null; then
+    echo "Installing chezmoi..."
+    {{ $sudo }}sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+else
+    echo "chezmoi is already installed"
+fi
+
 {{ end -}}
