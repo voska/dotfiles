@@ -7,3 +7,9 @@ Managed with [Chezmoi](https://www.chezmoi.io/).
 ```bash
 sh -c "$(curl -fsSL get.chezmoi.io)" -- init --apply voska
 ```
+
+## Update
+
+```bash
+chezmoi update
+```
