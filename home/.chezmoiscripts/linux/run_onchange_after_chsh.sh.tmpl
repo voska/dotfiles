@@ -1,7 +1,14 @@
-{{ if (not .ephemeral) -}}
 #!/bin/bash
 
 set -eufo pipefail
 
-chsh -s /usr/bin/zsh
-{{ end -}}
+# Get the path to zsh
+ZSH_PATH=$(which zsh)
+
+# Only change shell if it's not already zsh
+if [ "$SHELL" != "$ZSH_PATH" ]; then
+    echo "Changing default shell to zsh..."
+    chsh -s "$ZSH_PATH"
+else
+    echo "Shell is already set to zsh"
+fi
