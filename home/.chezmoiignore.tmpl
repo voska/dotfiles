@@ -19,6 +19,12 @@ Library/**
 .chezmoiscripts/windows/**
 {{ end -}}
 
+# GUI applications - only on machines with displays
+{{ if .headless -}}
+.config/cursor/**
+Library/Application Support/Cursor/**
+{{ end -}}
+
 
 # Personal/sensitive files - only on personal machines
 {{ if not .personal -}}

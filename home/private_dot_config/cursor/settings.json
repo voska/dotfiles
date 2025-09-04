@@ -32,5 +32,6 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "workbench.preferredLightColorTheme": "Default Light+"
+  "workbench.preferredLightColorTheme": "Default Light+",
+  "extensions.ignoreRecommendations": true
 }
