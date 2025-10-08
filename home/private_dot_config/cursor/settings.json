@@ -33,5 +33,7 @@
   "prettier.trailingComma": "all",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "workbench.preferredLightColorTheme": "Default Light+",
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "symbols.hidesExplorerArrows": false,
+  "workbench.iconTheme": "symbols"
 }
