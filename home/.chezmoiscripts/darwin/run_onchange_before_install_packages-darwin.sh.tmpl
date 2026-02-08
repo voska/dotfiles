@@ -36,7 +36,6 @@ set -eufo pipefail
     "1password"
     "1password-cli"
     "adobe-creative-cloud"
-    "arq"
     "beeper"
     "brave-browser"
     "chatgpt"
@@ -77,6 +76,7 @@ set -eufo pipefail
 
 {{- if .workstation }}
 {{ $casks = concat $casks (list
+    "arq"
     "bambu-studio"
     "cleanshot"
     "mactex"
