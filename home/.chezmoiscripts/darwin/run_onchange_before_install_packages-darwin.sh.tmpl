@@ -3,19 +3,24 @@
 set -eufo pipefail
 
 {{ $brews := list
+    "act"
     "bat"
     "chezmoi"
     "coreutils"
     "curl"
     "dockutil"
+    "fd"
     "ffmpeg"
     "findutils"
     "fzf"
     "gh"
     "git"
+    "gitleaks"
     "grep"
     "imagemagick"
     "jq"
+    "lazydocker"
+    "lazygit"
     "lsd"
     "mdless"
     "mise"
@@ -23,29 +28,30 @@ set -eufo pipefail
     "prettyping"
     "ripgrep"
     "tig"
+    "tldr"
     "vim"
-    "watchman" 
+    "watchman"
 -}}
 {{ $casks := list
     "1password"
     "1password-cli"
     "adobe-creative-cloud"
     "arq"
+    "beeper"
     "brave-browser"
     "chatgpt"
     "claude"
+    "codex"
     "conductor"
     "cursor"
     "dolphin"
     "font-jetbrains-mono-nerd-font"
     "ghostty"
     "gpg-suite"
-    "granola"
+    "home-assistant"
     "imageoptim"
-    "jan"
-    "lunar"
+    "lm-studio"
     "macdown"
-    "mactex"
     "microsoft-auto-update"
     "microsoft-excel"
     "microsoft-powerpoint"
@@ -61,14 +67,22 @@ set -eufo pipefail
     "superwhisper"
     "tailscale-app"
     "teamviewer"
-    "texstudio"
     "vimcal"
     "vlc"
     "whatsapp"
     "yaak"
     "zed"
-    "zoom" 
+    "zoom"
 -}}
+
+{{- if .workstation }}
+{{ $casks = concat $casks (list
+    "bambu-studio"
+    "cleanshot"
+    "mactex"
+    "texstudio"
+) -}}
+{{- end }}
 
 brew bundle --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}

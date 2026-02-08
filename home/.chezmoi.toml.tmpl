@@ -2,6 +2,7 @@
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets from 1Password */}}
+{{- $workstation := false -}}{{/* true if this is the primary workstation (nightwatch) */}}
 {{- "" -}}
 
 {{/* Create OS identifier for easier conditionals */}}
@@ -33,6 +34,7 @@
 {{-       $personal = true -}}
 {{-     else if contains "nightwatch" (lower $hostname) -}}
 {{-       $personal = true -}}
+{{-       $workstation = true -}}
 {{-     else -}}
 {{-       $personal = true -}}
 {{-     end -}}
@@ -54,9 +56,11 @@ encryption = "age"
     ephemeral = {{ $ephemeral }}
     headless = {{ $headless }}
     personal = {{ $personal }}
+    workstation = {{ $workstation }}
     osid = {{ $osid | quote }}
 
 {{- if $personal }}
+    op_account = {{ promptStringOnce . "op_account" "1Password account (e.g. my.1password.com)" | quote }}
 [onepassword]
     prompt = true
 {{- end }}

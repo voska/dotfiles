@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+# Install skills from lock file
+# Hash: {{ include "dot_agents/dot_skill-lock.json" | sha256sum }}
+
+if ! command -v pnpm &> /dev/null && ! command -v npx &> /dev/null; then
+    echo "Skipping skills install: neither pnpm nor npx found"
+    exit 0
+fi
+
+LOCK_FILE="$HOME/.agents/.skill-lock.json"
+
+if [ ! -f "$LOCK_FILE" ]; then
+    echo "Skipping skills install: no lock file found"
+    exit 0
+fi
+
+if ! command -v jq &> /dev/null; then
+    echo "Skipping skills install: jq not found"
+    exit 0
+fi
+
+echo "Installing skills from lock file..."
+
+DLX="pnpm dlx"
+if ! command -v pnpm &> /dev/null; then
+    DLX="npx"
+fi
+
+jq -r '
+  .skills | to_entries | group_by(.value.source) | .[] |
+  "\(.[0].value.source) \([.[].key] | join(" "))"
+' "$LOCK_FILE" | while read -r source skills; do
+    echo "Installing from $source..."
+    $DLX skills add "$source" -g -y --skill $skills < /dev/null || echo "Warning: failed to install from $source"
+done
+
+echo "Skills installation complete."

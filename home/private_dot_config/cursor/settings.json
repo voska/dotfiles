@@ -35,5 +35,19 @@
   "workbench.preferredLightColorTheme": "Default Light+",
   "extensions.ignoreRecommendations": true,
   "symbols.hidesExplorerArrows": false,
-  "workbench.iconTheme": "symbols"
+  "workbench.iconTheme": "symbols",
+  "remote.SSH.remotePlatform": {
+    "langley": "linux",
+    "hetzner": "linux",
+    "dg": "macOS",
+    "alocc": "linux",
+    "raptor": "macOS"
+  },
+  "workbench.editor.customLabels.patterns": {
+    "**/**.tsx": "${dirname}/${filename}",
+    "**/**.ts": "${dirname}/${filename}"
+  },
+  "markdown.preview.doubleClickToSwitchToEditor": false,
+  "markdown.preview.typographer": true,
+  "window.title": "${activeRepositoryBranchName}${separator}${rootName}${separator}${profileName}"
 }
