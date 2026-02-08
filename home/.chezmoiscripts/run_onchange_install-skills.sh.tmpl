@@ -5,6 +5,10 @@ set -eufo pipefail
 # Install skills from lock file
 # Hash: {{ include "dot_agents/dot_skill-lock.json" | sha256sum }}
 
+# Ensure mise shims and homebrew are in PATH for non-interactive shells
+[ -d "$HOME/.local/share/mise/shims" ] && export PATH="$HOME/.local/share/mise/shims:$PATH"
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
 if ! command -v pnpm &> /dev/null && ! command -v npx &> /dev/null; then
     echo "Skipping skills install: neither pnpm nor npx found"
     exit 0
@@ -29,10 +33,14 @@ if ! command -v pnpm &> /dev/null; then
     DLX="npx"
 fi
 
-jq -r '
+mapfile -t lines < <(jq -r '
   .skills | to_entries | group_by(.value.source) | .[] |
   "\(.[0].value.source) \([.[].key] | join(" "))"
-' "$LOCK_FILE" | while read -r source skills; do
+' "$LOCK_FILE")
+
+for line in "${lines[@]}"; do
+    source="${line%% *}"
+    skills="${line#* }"
     echo "Installing from $source..."
     $DLX skills add "$source" -g -y --skill $skills < /dev/null || echo "Warning: failed to install from $source"
 done
