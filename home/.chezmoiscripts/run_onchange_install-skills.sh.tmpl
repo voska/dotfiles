@@ -33,16 +33,14 @@ if ! command -v pnpm &> /dev/null; then
     DLX="npx"
 fi
 
-mapfile -t lines < <(jq -r '
-  .skills | to_entries | group_by(.value.source) | .[] |
-  "\(.[0].value.source) \([.[].key] | join(" "))"
-' "$LOCK_FILE")
-
-for line in "${lines[@]}"; do
+while IFS= read -r line; do
     source="${line%% *}"
     skills="${line#* }"
     echo "Installing from $source..."
     $DLX skills add "$source" -g -y --skill $skills < /dev/null || echo "Warning: failed to install from $source"
-done
+done <<< "$(jq -r '
+  .skills | to_entries | group_by(.value.source) | .[] |
+  "\(.[0].value.source) \([.[].key] | join(" "))"
+' "$LOCK_FILE")"
 
 echo "Skills installation complete."
