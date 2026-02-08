@@ -38,6 +38,11 @@ alias ping="prettyping"
 {{- end }}
 
 alias npx="pnpm dlx"
+
+{{- if lookPath "smartctl" }}
+alias ssd-health="smartctl -a /dev/disk0 | grep -E 'Model|Capacity|Percentage|Health|Power On'"
+{{- end }}
+
 alias dirstat="du -d 1 -h | sort -hr | head -n 11"
 alias ip="ifconfig | grep 'inet '"
 alias v="vim"
