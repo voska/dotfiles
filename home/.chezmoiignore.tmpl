@@ -31,6 +31,10 @@ Library/Application Support/Cursor/**
 {{ if not .personal -}}
 .ssh/**
 .gnupg/**
+{{ end -}}
+
+# 1Password-dependent files - only on non-headless machines
+{{ if .headless -}}
 .npmrc
 {{ end -}}
 

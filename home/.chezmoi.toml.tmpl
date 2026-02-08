@@ -59,7 +59,7 @@ encryption = "age"
     workstation = {{ $workstation }}
     osid = {{ $osid | quote }}
 
-{{- if $personal }}
+{{- if and $personal (not $headless) }}
     op_account = {{ promptStringOnce . "op_account" "1Password account (e.g. my.1password.com)" | quote }}
 [onepassword]
     prompt = true
