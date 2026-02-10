@@ -48,6 +48,10 @@ alias ip="ifconfig | grep 'inet '"
 alias v="vim"
 alias m="man"
 
+{{- if lookPath "claude" }}
+alias yolo="claude --dangerously-skip-permissions"
+{{- end }}
+
 {{- if lookPath "docker" }}
 # Docker Shortcut Aliases
 alias d="docker"
